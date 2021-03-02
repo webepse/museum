@@ -1,5 +1,12 @@
 <?php
     session_start();
+    // vérifier si déjà connecté 
+    if(isset($_SESSION['login']))
+    {
+        header("LOCATION:dashboard.php");
+    }
+
+
     $erreur="";
     var_dump($_POST);
     /* vérifier si notre formulaire a été envoyé ou non */
