@@ -5,8 +5,6 @@
     {
         header("LOCATION:dashboard.php");
     }
-
-
     $erreur="";
     var_dump($_POST);
     /* vérifier si notre formulaire a été envoyé ou non */

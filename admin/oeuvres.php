@@ -5,14 +5,6 @@
     {
         header("LOCATION:index.php");
     }
-
-    if(isset($_GET['deco']))
-    {
-        session_destroy();
-        header("LOCATION:index.php");
-    }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +23,27 @@
     <a href="dashboard.php?deco=ok" class="btn btn-danger my-1">Déconnexion</a>
     <div class="row">
         <div class="col-4">
-            <a href="oeuvres.php">Gestion des oeuvres</a>
+            <a href="dashboard.php" class="btn btn-secondary my-1">Retour</a><br>
+            <a href="addArtwork.php" class="btn btn-success my-1">Ajouter une oeuvre</a>
         </div>
     </div>
-
 </div>
-    
+<div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Titre</th>
+                    <th>Catégorie</th>
+                    <th>Année</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+</div>
 
 </body>
 </html>
