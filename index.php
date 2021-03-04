@@ -1,3 +1,6 @@
+<?php
+    require "connexion.php";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,5 +11,15 @@
 </head>
 <body>
     <h1>Museum</h1>
+    <h2>les oeuvres</h2>
+    <?php
+        $artworks = $bdd->query("SELECT * FROM oeuvres");
+        while($donArt = $artworks->fetch())
+        {
+           echo "<div><a href='artwork.php?id=".$donArt['id']."'>".$donArt['title']."</a></div>";
+        }
+        $artworks->closeCursor();
+
+    ?>
 </body>
 </html>

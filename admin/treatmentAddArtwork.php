@@ -9,8 +9,8 @@
      if(isset($_POST['title']))
      {
         $err=0;
-        var_dump($_POST);
-        var_dump($_FILES);
+        //var_dump($_POST);
+        //var_dump($_FILES);
 
         //traitement des valeurs 
         if(empty($_POST['title'])) //   if($_POST['title']=="")
@@ -94,22 +94,14 @@
                         ":year" => $year
                     ]);
                     $insert->closeCursor();
+                    // redirection vers oeuvres.php avec message success 
                     header("LOCATION:oeuvres.php?add=success");
                 }else{
                     header("LOCATION:addArtwork.php?upload=error");
                 }
-
-
             }else{
                 header("LOCATION:addArtwork.php?imgerror=".$imageError);
             }
-
-
-
-
-
-
-            // insertion dans la bdd 
         }else{
             
             // renvoyer l'utilisateur vers le formulaire avec l'info de l'erreur

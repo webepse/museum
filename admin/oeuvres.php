@@ -5,6 +5,10 @@
     {
         header("LOCATION:index.php");
     }
+    // connexion à la BDD
+    require "../connexion.php";
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,18 +33,41 @@
     </div>
 </div>
 <div class="container">
+        <?php
+            if(isset($_GET['add']))
+            {
+                echo "<div class='alert alert-success'>Votre oeuvre a bien été enregistrée</div>"; 
+            }
+        ?>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>Titre</th>
-                    <th>Catégorie</th>
-                    <th>Année</th>
-                    <th>Actions</th>
+                    <th class='text-center'>id</th>
+                    <th class='text-center'>Titre</th>
+                    <th class='text-center'>Catégorie</th>
+                    <th class='text-center'>Année</th>
+                    <th class='text-center'>Actions</th>
                 </tr>
             </thead>
             <tbody>
-
+                <?php
+                    $req = $bdd->query("SELECT * FROM oeuvres");
+                    while($don = $req->fetch())
+                    {
+                        echo "<tr>";
+                            echo "<td class='text-center'>".$don['id']."</td>";
+                            echo "<td class='text-center'>".$don['title']."</td>";
+                            echo "<td class='text-center'>".$don['category']."</td>";
+                            echo "<td class='text-center'>".$don['year']."</td>";
+                            echo "<td class='text-center'>";
+                                
+                                echo "<a href='updateArtwork.php' class='btn btn-warning mx-2'>Modifier</a>";
+                                echo "<a href='deleteArtwork.php' class='btn btn-danger mx-2'>Supprimer</a>";
+                            echo "</td>";
+                        echo "</tr>";
+                    }
+                    $req->closeCursor();
+                ?>
             </tbody>
         </table>
 </div>
