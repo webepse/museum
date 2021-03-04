@@ -39,7 +39,7 @@
         ?>
         <div class="form-group mb-3">
             <label for="title">Titre: </label>
-            <input type="text" id="title" name="title" class="form-control" placeholder="Titre de l'oeuvre">
+            <input type="text" id="title" name="title" class="form-control" placeholder="Titre de l'oeuvre" required>
         </div>
         <div class="form-group mb-3">
             <label for="category">Catégorie</label>
