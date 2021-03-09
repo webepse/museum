@@ -2,7 +2,7 @@
     font-weight: bolder;
 }
 
-.info-artwork img{
+.info-artwork img, .img-demo{
     height: 300px;
     width: 300px;
     object-fit: cover;

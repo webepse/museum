@@ -116,6 +116,9 @@
                 ?>
             </select>
         </div>
+        <div class="col-12">
+            <img src="../upload/<?= $don['image'] ?>" class="img-demo" alt="image de <?= $don['title'] ?>">
+        </div>
         <div class="input-group mb-3">
             <input type="file" class="form-control" id="inputGroupFile02" name="image">
             <label class="input-group-text" for="inputGroupFile02">image</label>
