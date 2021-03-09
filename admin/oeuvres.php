@@ -38,6 +38,10 @@
             {
                 echo "<div class='alert alert-success'>Votre oeuvre a bien été enregistrée</div>"; 
             }
+            if(isset($_GET['delete']))
+            {
+                echo "<div class='alert alert-danger'>L'oeuvre id : ".$_GET['id']." a bien été supprimée</div>"; 
+            }
         ?>
         <table class="table table-hover">
             <thead>
@@ -61,8 +65,8 @@
                             echo "<td class='text-center'>".$don['year']."</td>";
                             echo "<td class='text-center'>";
                                 
-                                echo "<a href='updateArtwork.php' class='btn btn-warning mx-2'>Modifier</a>";
-                                echo "<a href='deleteArtwork.php' class='btn btn-danger mx-2'>Supprimer</a>";
+                                echo "<a href='updateArtwork.php?id=".$don['id']."' class='btn btn-warning mx-2'>Modifier</a>";
+                                echo "<a href='deleteArtwork.php?id=".$don['id']."' class='btn btn-danger mx-2'>Supprimer</a>";
                             echo "</td>";
                         echo "</tr>";
                     }

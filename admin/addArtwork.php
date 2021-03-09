@@ -23,7 +23,7 @@
     <a href="dashboard.php?deco=ok" class="btn btn-danger my-1">Déconnexion</a>
     <div class="row">
         <div class="col-4">
-            <a href="dashboard.php" class="btn btn-secondary my-1">Retour</a><br>
+            <a href="oeuvres.php" class="btn btn-secondary my-1">Retour</a><br>
         </div>
     </div>
 </div>

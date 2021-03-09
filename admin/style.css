@@ -1,0 +1,9 @@
+.label-artwork{
+    font-weight: bolder;
+}
+
+.info-artwork img{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}
