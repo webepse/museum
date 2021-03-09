@@ -42,6 +42,10 @@
             {
                 echo "<div class='alert alert-danger'>L'oeuvre id : ".$_GET['id']." a bien été supprimée</div>"; 
             }
+            if(isset($_GET['update']))
+            {
+                echo "<div class='alert alert-warning'>L'oeuvre id : ".$_GET['id']." a bien été modifiée</div>"; 
+            }
         ?>
         <table class="table table-hover">
             <thead>
