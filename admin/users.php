@@ -6,6 +6,8 @@
         header("LOCATION:index.php");
     }
     // connexion à la BDD
+    // vider SESSION errorAddUser
+    unset($_SESSION['errorAddUser']); // unset détruit une variable
     require "../connexion.php";
 
 
@@ -66,7 +68,6 @@
                             echo "<td class='text-center'>".$don['login']."</td>";
                             echo "<td class='text-center'>".$don['email']."</td>";
                             echo "<td class='text-center'>";
-                                
                                 echo "<a href='updateUser.php?id=".$don['id']."' class='btn btn-warning mx-2'>Modifier</a>";
                                 echo "<a href='deleteUser.php?id=".$don['id']."' class='btn btn-danger mx-2'>Supprimer</a>";
                             echo "</td>";
