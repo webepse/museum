@@ -29,6 +29,7 @@
     <h1>Administration de Museum</h1>
     <h3>Bonjour <?php echo $_SESSION['login'] ?></h3>
     <a href="dashboard.php?deco=ok" class="btn btn-danger my-1">Déconnexion</a>
+    <a href="../index.php" class="btn btn-secondary mx-1">Retour au site</a>
     <div class="row">
         <div class="col-4">
             <a href="oeuvres.php">Gestion des oeuvres</a><br>

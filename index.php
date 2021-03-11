@@ -11,6 +11,7 @@
 </head>
 <body>
     <h1>Museum</h1>
+    <div><a href="search.php">Rechercher une oeuvre</a></div>
     <h2>les oeuvres</h2>
     <?php
         $artworks = $bdd->query("SELECT * FROM oeuvres");
