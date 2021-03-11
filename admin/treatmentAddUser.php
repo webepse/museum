@@ -37,7 +37,8 @@ if(isset($_POST['login']))
         if($donLog = $reqLog->fetch())
         {
            array_push($err,2); // ajoute au tableau 2
-        }      
+        }
+        $reqLog->closeCursor();      
     }
 
     if(empty($_POST['password']))
