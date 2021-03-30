@@ -58,7 +58,7 @@
                 echo "<div class='alert alert-danger'>Veuillez remplir le formulaire correctement (code erreur : ".$_GET['error']." )</div>";
             }
 
-            if(isset($_GET['imgerror']))
+            if(isset($_GET['fileerror']))
             {
                 echo "<div class='alert alert-danger'>Le fichier envoyé a eu problème (code erreur : ".$_GET['imgerror']." )</div>";
             }
@@ -122,6 +122,20 @@
         <div class="input-group mb-3">
             <input type="file" class="form-control" id="inputGroupFile02" name="image">
             <label class="input-group-text" for="inputGroupFile02">image</label>
+        </div>
+        <?php
+            if(!empty($don['pdf']))
+            {
+                echo '<div class="col-12">';
+                    echo ' <span class="label-artwork">Document: </span>';
+                    echo "<a href='../upload/".$don['pdf']."'>Document</a>";
+                echo '</div>';
+            }
+        ?>
+         <!-- pour le PDF -->
+         <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile02" name="pdf">
+            <label class="input-group-text" for="inputGroupFile02">PDF (facultatif)</label>
         </div>
         <div class="form-group  mb-3">
             <label for="description">description</label>

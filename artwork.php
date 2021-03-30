@@ -38,6 +38,14 @@
     <h4>Année de création : <?= $don['year'] ?></h4>
     <img src="upload/<?= $don['image'] ?>" alt="image de <?= $don['title'] ?>">
 
+    <?php
+        if(!empty($don['pdf']))
+        {
+            echo "<h4>Informations supplémentaires</h4>";
+            echo "<a href='upload/".$don['pdf']."'>Document</a>";
+        }
+    ?>
+
     <div class="description">
         <?= nl2br($don['description']) ?>
     </div>

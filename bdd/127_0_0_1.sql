@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 25 fév. 2021 à 12:39
+-- Généré le : mar. 30 mars 2021 à 07:40
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -36,7 +36,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `mdp` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id`, `login`, `mdp`, `email`) VALUES
+(1, 'admin', '$2y$10$N3CDNXYLDiDuqYohmBo6yOyf2roCealrrolVL5D76nnc0P3t/MLze', 'admin@epse.be');
 
 -- --------------------------------------------------------
 
@@ -52,8 +59,9 @@ CREATE TABLE IF NOT EXISTS `oeuvres` (
   `image` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `year` smallint(6) NOT NULL,
+  `pdf` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

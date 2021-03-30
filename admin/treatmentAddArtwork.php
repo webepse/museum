@@ -65,8 +65,30 @@
                 $imageError = "size";
             }
 
+            // gestion du PDF 
+            if(!empty($_FILES['pdf']['tmp_name']))
+            {
+                $pdf = basename($_FILES["pdf"]["name"]);
+                $pdfTaille = filesize($_FILES['pdf']['tmp_name']);
+                $pdfExtension = strrchr($_FILES['pdf']['name'],'.');
+
+                  /* tester l'extension du fichier en comparaison du tableau $extensions */
+                /* in_array permet de savoir si le 1er paramètre se retrouve dans le 2ème paramètre qui doit être un tableau */
+                if($pdfExtension!=".pdf")
+                {
+                    $fileError = "pdf-wrong-extension";
+                }
+
+                if($pdftaille > $tailleMax)
+                {
+                    $fileError = "pdf-size";
+                }
+            }
+
+
+
             /* si $imageError n'existe pas  */
-            if(!isset($imageError))
+            if(!isset($fileError))
             {
                 // traitement et formatage du nom du fichier envoyé
                 $fichier = strtr($fichier, 
@@ -79,28 +101,70 @@
                 // traitement des fichiers doublons
                 $fichiercpt = rand().$fichier;
 
+                if(!empty($_FILES['pdf']['tmp_name']))
+                {
+                    $pdf = strtr($pdf, 
+                    'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+                    'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+
+                    $pdf = preg_replace('/([^.a-z0-9]+)/i','-',$pdf);
+
+                    $pdfcpt = rand().$pdf;
+                }
+
+
                 // déplacement du fichier temporaire dans le dossier 'upload' avec son nouveau nom 
+                // attention avec cette méthode, il y a un risque d'image perdue si une erreur arrive lors du déplacement du fichier. 
                 if(move_uploaded_file($_FILES['image']['tmp_name'], $dossier.$fichiercpt))
                 {
-                    // le fichier est dans le dossier
-                    // insertion dans la base de données
                     require "../connexion.php";
-                    $insert = $bdd->prepare("INSERT INTO oeuvres(title,category,image,description,year) VALUES(:title,:category,:image,:description,:year)");
-                    $insert->execute([
-                        ":title" => $title,
-                        ":category" => $category,
-                        ":image" => $fichiercpt,
-                        ":description" => $description,
-                        ":year" => $year
-                    ]);
-                    $insert->closeCursor();
-                    // redirection vers oeuvres.php avec message success 
-                    header("LOCATION:oeuvres.php?add=success");
+                    // test pour le PDF 
+                    if(empty($_FILES['pdf']['tmp_name']))
+                    {
+                        // le fichier est dans le dossier
+                        // insertion dans la base de données
+                        $insert = $bdd->prepare("INSERT INTO oeuvres(title,category,image,description,year) VALUES(:title,:category,:image,:description,:year)");
+                        $insert->execute([
+                            ":title" => $title,
+                            ":category" => $category,
+                            ":image" => $fichiercpt,
+                            ":description" => $description,
+                            ":year" => $year
+                        ]);
+                        $insert->closeCursor();
+                        // redirection vers oeuvres.php avec message success 
+                        header("LOCATION:oeuvres.php?add=success");
+                    }else{
+                        if(move_uploaded_file($_FILES['pdf']['tmp_name'], $dossier.$pdfcpt))
+                        {
+                              // le fichier est dans le dossier
+                            // insertion dans la base de données
+                            $insert = $bdd->prepare("INSERT INTO oeuvres(title,category,image,description,year,pdf) VALUES(:title,:category,:image,:description,:year,:pdf)");
+                            $insert->execute([
+                                ":title" => $title,
+                                ":category" => $category,
+                                ":image" => $fichiercpt,
+                                ":description" => $description,
+                                ":year" => $year,
+                                ":pdf"=>$pdfcpt
+                            ]);
+                            $insert->closeCursor();
+                            // redirection vers oeuvres.php avec message success 
+                            header("LOCATION:oeuvres.php?add=success");
+                        }else{
+                            header("LOCATION:addArtwork.php?upload=error");
+                        }
+
+
+
+                    }
+
+
                 }else{
                     header("LOCATION:addArtwork.php?upload=error");
                 }
             }else{
-                header("LOCATION:addArtwork.php?imgerror=".$imageError);
+                header("LOCATION:addArtwork.php?fileerror=".$fileError);
             }
         }else{
             

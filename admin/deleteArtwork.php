@@ -31,6 +31,10 @@
      if(isset($_GET['del']))
      {
          unlink("../upload/".$don['image']);
+         if(!empty($don['pdf']))
+         {
+             unlink("../upload/".$don['pdf']);
+         }
          $delete = $bdd->prepare("DELETE FROM oeuvres WHERE id=?");
          $delete->execute([$id]);
          $delete->closeCursor();
@@ -79,6 +83,13 @@
      <span class="label-artwork">Description: </span><br>
      <span class="value-artwork"><?= nl2br($don['description']) ?></span>
     </div>
+    <?php
+        if(!empty($don['pdf']))
+        {
+            echo ' <span class="label-artwork">Document: </span>';
+            echo "<a href='../upload/".$don['pdf']."'>Document</a>";
+        }
+    ?>
 
     <h2>Voulez-vous supprimer <?= $don['title'] ?></h2>
     <a href="oeuvres.php" class="btn btn-success mx-2">Non</a>
