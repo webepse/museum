@@ -57,12 +57,12 @@
             /* in_array permet de savoir si le 1er paramètre se retrouve dans le 2ème paramètre qui doit être un tableau */
             if(!in_array($extension, $extensions))
             {
-                $imageError = "wrong-extension";
+                $fileError = "wrong-extension";
             }
 
             if($taille > $tailleMax)
             {
-                $imageError = "size";
+                $fileError = "size";
             }
 
             // gestion du PDF 
@@ -87,7 +87,7 @@
 
 
 
-            /* si $imageError n'existe pas  */
+            /* si $fileError n'existe pas  */
             if(!isset($fileError))
             {
                 // traitement et formatage du nom du fichier envoyé
